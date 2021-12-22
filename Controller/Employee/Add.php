@@ -34,7 +34,9 @@ class Add extends Action
     {
         $data = $this->getRequest()->getParams();
         $emptyEmployee = $this->modelFactory->create();
-        $this->resourceModel->load($emptyEmployee,$data['entity_id']);
+        if(!empty($data['entity_id'])){
+            $this->resourceModel->load($emptyEmployee,$data['entity_id']);
+        }
         $emptyEmployee->setName($data['name'] ?? null);
         $emptyEmployee->setEmail($data['email'] ?? null);
         $emptyEmployee->setMobile($data['mobile'] ?? null);
